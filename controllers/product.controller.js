@@ -8,6 +8,7 @@ module.exports.getProduct = function(req, res){
         let product;
         results.forEach(result =>{
             product ={
+                maSP: result.maSP,
                 tenSP: result.tenSP,
                 hinhanhSP: result.hinhanhSP,
                 HDH: result.HDH,
