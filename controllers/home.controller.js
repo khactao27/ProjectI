@@ -1,64 +1,57 @@
-const db = require('../db');
+const sanpham = require('../models/sanpham.model');
 const thuonghieu = require('../models/thuonghieu.model');
+const users = require('../models/user.model');
 
-module.exports.getHome = async (req, res) =>{
-    let product =[];
-    let query = "SELECT * FROM sanpham";
-    db.query(query, async (err, results)=>{
-        if(err) throw err;
-        results.forEach(element => {
-            let phone = {
-                tenSP: element.tenSP,
-                hinhanhSP: element.hinhanhSP,
-                giaSP: element.giaSP,
-                maSP: element.maSP
-            }
-            product.push(phone);
+module.exports.getHome = async (req, res) => {
+    let idUser = parseInt(req.cookies.userId);
+    try {
+        let user;
+        if (idUser) {
+            user = await users.findByPk(idUser);
+        }
+        const products = await sanpham.findAll({
+            attributes: ['tenSP', 'hinhanhSP', 'giaSP', 'maSP', 'sanco']
         });
-        let queryBrand = "SELECT * FROM thuonghieu";
-        let brands = [];
-        db.query(queryBrand, async (err, rel)=>{
-            if(err) throw err;
-            rel.forEach(value =>{
-                let brand = {
-                    maTH: value.maTH,
-                    logoTH: value.logoTH,
-                    tenTH: value.tenTH
-                }
-                brands.push(brand);
-            });
-            res.render('../views/home/home.pug',{products: product,brands:brands});
+        let brands = await thuonghieu.findAll({
+            attributes: ['maTH', 'tenTH', 'logoTH']
         });
-    });
+        if (user) {
+            res.render('../views/home/home.pug', { products: products, brands: brands, idUser: idUser, user: user });
+        }
+        else {
+            res.render('../views/home/home.pug', { products: products, brands: brands, idUser: idUser });
+        }
+    } catch (err) {
+        console.log(err);
+    }
 }
-module.exports.getTH = async (req, res)=>{
-    const idbrand = parseInt(req.params.idbrand);
-    let query = "SELECT * FROM sanpham WHERE maTH ="+idbrand+"";
-    db.query(query, async (err, results)=>{
-        if(err) throw err;
-        let prd = [];
-        results.forEach(element=>{
-            let pro = {
-                tenSP: element.tenSP,
-                hinhanhSP: element.hinhanhSP,
-                maSP: element.maSP,
-                giaSP: element.giaSP
+module.exports.getTH = async (req, res) => {
+    let idUser = parseInt(req.cookies.userId);
+    try {
+        let user;
+        if (idUser) {
+            user = await users.findByPk(idUser);
+        }
+        let idBr = req.query.id;
+        let products = await sanpham.findAll({
+            attributes: ['tenSP', 'hinhanhSP', 'giaSP', 'maSP', 'sanco'],
+            where: {
+                maTH: idBr
             }
-            prd.push(pro);
         });
-        let queryBrand = "SELECT * FROM thuonghieu";
-        let brands = [];
-        db.query(queryBrand, async (err, rel)=>{
-            if(err) throw err;
-            rel.forEach(value =>{
-                let brand = {
-                    maTH: value.maTH,
-                    logoTH: value.logoTH,
-                    tenTH: value.tenTH
-                }
-                brands.push(brand);
-            });
-            res.render('../views/home/home.pug',{products: prd,brands:brands});
+        let brands = await thuonghieu.findAll({
+            attributes: ['maTH', 'tenTH', 'logoTH']
         });
-    });
+        if (user) {
+            res.render('../views/home/home.pug', { products: products, brands: brands, idUser: idUser, user: user });
+        }
+        else {
+            res.render('../views/home/home.pug', { products: products, brands: brands, idUser: idUser });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+}
+function money(value) {
+    return Math.floor(Number(value)).toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 }

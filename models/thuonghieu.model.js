@@ -5,7 +5,8 @@ const thuonghieu = sequelize.define('thuonghieu', {
     maTH: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     tenTH: {
         type: DataTypes.STRING(45),
@@ -19,6 +20,5 @@ const thuonghieu = sequelize.define('thuonghieu', {
     tableName: 'thuonghieu',
     timestamps: false
 });
-
 module.exports = thuonghieu;
 

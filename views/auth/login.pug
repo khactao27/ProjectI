@@ -36,16 +36,16 @@ section.flex-container(style='padding: 100px;')
   form(action='/auth/login', method='POST')
     label(for='username') T&agrave;i kho&#x1EA3;n
     br
-    input#username.form-group(type='text', style='width:30%;', name='username', placeholder='Nhập tài khoản' value=username?username:"")
+    input#username.form-group(type='text', style='width:30%;', name='username', placeholder='Nhập tài khoản' value=username?username:"" required autofocus)
     br
     label(for='password') M&#x1EAD;t kh&#x1EA9;u
     br
-    input#password.form-group(type='password', style='width:30%;margin-bottom: 30px;', name='password', placeholder='Nhập mật khẩu' value=password?password:"")
+    input#password.form-group(type='password', style='width:30%;margin-bottom: 30px;', name='password', placeholder='Nhập mật khẩu' value=password?password:"" required autofocus)
     br
     button.btn.btn-primary(type='submit') &Dstrok;&abreve;ng nh&#x1EAD;p
   span
     button.btn.btn-danger(onclick="document.location='/'") H&#x1EE7;y
   span
-    a(href='/admin/auth/login') Login for Admin!
+    a(href='/admin/auth/login', style='text-decoration: none;') Login for Admin!
   span
-    a(href='/auth/signup') &Dstrok;&abreve;ng k&iacute; t&agrave;i kho&#x1EA3;n m&#x1EDB;i
+    a(href='/auth/signup', style='text-decoration: none;') &Dstrok;&abreve;ng k&iacute; t&agrave;i kho&#x1EA3;n m&#x1EDB;i

@@ -1,12 +1,14 @@
 const sequelize = require('./db');
 const {DataTypes} = require('sequelize');
 const Admin = require('./admin.model');
+const Cart = require('./cart.model');
 
 const bill = sequelize.define('donhang', {
     maDH: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     diachi: {
         type: DataTypes.STRING(500),
@@ -35,6 +37,21 @@ const bill = sequelize.define('donhang', {
             model: Admin,
             key: 'id'
         }
+    },
+    email: {
+        type: DataTypes.STRING(45),
+        allowNull: false
+    },
+    phone: {
+        type: DataTypes.STRING(10),
+        allowNull: false
+    },
+    note: {
+        type: DataTypes.TEXT
+    },
+    fullname: {
+        type: DataTypes.STRING(200),
+        allowNull: false
     }
 }, {
     tableName: 'donhang',

@@ -2,7 +2,7 @@ const sequelize = require('./db');
 const {DataTypes} = require('sequelize');
 const thuonghieu = require('./thuonghieu.model');
 
-const products = sequelize.define('sanpham', {
+const sanpham = sequelize.define('sanpham', {
     maSP: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -82,4 +82,4 @@ const products = sequelize.define('sanpham', {
     tableName: 'sanpham',
     timestamps: false
 });
-module.exports = products;
+module.exports= sanpham;

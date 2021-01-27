@@ -5,7 +5,8 @@ const user = sequelize.define('user',{
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        autoIncrement: true
     },
     username: {
         type: DataTypes.STRING(50),
@@ -17,8 +18,7 @@ const user = sequelize.define('user',{
         allowNull: false
     },
     phone: {
-        type: DataTypes.STRING(10),
-        allowNull: false
+        type: DataTypes.STRING(10)
     },
     email: {
         type: DataTypes.STRING(100),
@@ -28,17 +28,16 @@ const user = sequelize.define('user',{
         type: DataTypes.STRING(100),
         allowNull: false
     },
-    ngaysinh: {
+    dob: {
         type: DataTypes.DATE
     },
     gender: {
-        type: DataTypes.STRING(100),
-        allowNull: false
+        type: DataTypes.STRING(100)
     },
     avatar: {
         type: DataTypes.STRING(100),
         allowNull: false,
-        defaultValue: '/images/uploads/avatar/default.png'
+        defaultValue: '/images/account.png'
     }
 },{
     tableName:'user',

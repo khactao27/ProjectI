@@ -29,4 +29,15 @@ const Admin = sequelize.define('admin', {
     tableName: 'admin',
     timestamps: false
 });
+Admin.prototype.isAdmin = async (username, password)=>{
+    let rs = await Admin.findOne({
+        where:{
+            username: username,
+            password: password
+        }
+    });
+    if(rs === null){
+        console.log("Incorection Password or Username");
+    }
+}
 module.exports = Admin;

@@ -1,0 +1,107 @@
+doctype html
+head
+  title Admin - Panel
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1', crossorigin='anonymous')
+  style.
+    * {
+    box-sizing: border-box;
+    }
+    body {
+    font-family: Arial;
+    margin: 0;
+    }
+    .header {
+    padding: 60px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    }
+    .navbar {
+    display: flex;
+    background-color: #333;
+    }
+    .navbar a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    text-align: center;
+    }
+    .navbar a:hover {
+    background-color: blue;
+    color: black;
+    }
+    .row {
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .side {
+    flex: 25%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    }
+    .main {
+    flex: 75%;
+    background-color: white;
+    padding: 20px;
+    }
+    .fakeimg {
+    background-color: #aaa;
+    width: 100%;
+    padding: 20px;
+    }
+    .footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    }
+    @media screen and (max-width: 700px) {
+    .row,
+    .navbar {
+    flex-direction: column;
+    }
+    }
+.navbar
+  a(href='https://www.instagram.com/tao_duongkhac/')
+   img(src="/images/instagram.jpg", alt="insta", style="width: 30px; height: 30px;")
+   | Instagram
+  a(href='#')
+   img(src="/images/account.png", alt="Account img", style="width: 30px; height: 30px;")
+   | Admin - Tee
+  a(href='/auth/login') Đăng xuất
+.row
+  .side
+    .list-group
+      button.list-group-item.list-group-item-action.active(type='button', aria-current='true')
+        | Trang ch&#x1EE7;
+      button.list-group-item.list-group-item-action(type='button', onclick="document.location='/admin/brands'")
+        |  Th&#x1B0;&#x1A1;ng hi&#x1EC7;u
+      button.list-group-item.list-group-item-action(type='button', onclick="document.location='/admin/products'")
+        | S&#x1EA3;n ph&#x1EA9;m
+      button.list-group-item.list-group-item-action(type='button', onclick="document.location='/admin/bills'")
+        | &Dstrok;&#x1A1;n h&agrave;ng
+      button.list-group-item.list-group-item-action(type='button', onclick="document.location='/admin/accounts'")
+        | T&agrave;i kho&#x1EA3;n
+  .main
+    table.table
+      thead
+        tr
+          th(scope='col') M&atilde; &dstrok;&#x1A1;n h&agrave;ng
+          th(scope='col') H&#x1ECD; t&ecirc;n ng&#x1B0;&#x1EDD;i &dstrok;&#x1EB7;t
+          th(scope='col') S&#x1ED1; &dstrok;i&#x1EC7;n tho&#x1EA1;i
+          th(scope='col') &Dstrok;&#x1ECB;a ch&#x1EC9; giao h&agrave;ng
+          th(scope='col') Ng&agrave;y &dstrok;&#x1EB7;t
+          th(scope='col') Tr&#x1EA1;ng th&aacute;i &dstrok;&#x1A1;n h&agrave;ng
+          th(scope='col')
+      tbody
+      each bill in bills
+        tr
+          th(scope='row')=bill.maDH
+          td=bill.fullname
+          td=bill.phone
+          td=bill.diachi
+          td=bill.ngaydat
+          td(style='color:blue;')=bill.trangthai
+          td
+            button.btn.btn-warning(onclick=`document.location='/admin/bills/'+${bill.maDH}`, value='#') Xem chi ti&#x1EBF;t

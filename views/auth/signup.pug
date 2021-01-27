@@ -1,0 +1,50 @@
+doctype html
+head
+  title &Dstrok;&abreve;ng k&iacute; t&agrave;i kho&#x1EA3;n
+  meta(charset='utf-8')
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1', crossorigin='anonymous')
+  style.
+    .flex-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 100px;
+    }
+    .flex-container > form{
+    text-align: center;
+    }
+    .flex-container > h1{
+    text-align: center;
+    }
+    .flex-container > span{
+        text-align: center;
+    }
+    h1{
+    margin-bottom: 30px;
+    }
+section.flex-container
+  h1 &Dstrok;&abreve;ng k&iacute; t&agrave;i kho&#x1EA3;n m&#x1EDB;i
+  form(action='/auth/signup', method='POST',, style="margin-bottom: 5px;")
+    label(for='fullname') H&#x1ECD; t&ecirc;n
+    br
+    input#fullname.form-group(type='text', style='width: 30%;', name='fullname', placeholder='VD: Dương Khắc Tạo' required autofocus)
+    br
+    label(for='username') T&ecirc;n &dstrok;&abreve;ng nh&#x1EAD;p
+    br
+    input#username.form-group(type='text', name='username', style='width: 30%;', placeholder='VD: TeeTech' required autofocus)
+    br
+    label(for='password') M&#x1EAD;t kh&#x1EA9;u
+    br
+    input#password(type='password', style='width: 30%;', name='password' required autofocus)
+    br
+    label(for='passAgain') Nh&#x1EAD;p l&#x1EA1;i m&#x1EAD;t kh&#x1EA9;u
+    br
+    input#passAgain.form-group(type='password', style='width: 30%;', name='passAgain' required autofocus)
+    br
+    label(for='email') Email
+    br
+    input#email.form-group(type='email', style='width: 30%;margin-bottom: 20px;', name='email', placeholder='VD: tao.duongkhac@gmail.com' required autofocus)
+    br
+    button.btn.btn-primary(type='submit') &Dstrok;&abreve;ng k&iacute;
+  span
+    button.btn.btn-danger(onclick="document.location='/auth/login'") H&#x1EE7;y

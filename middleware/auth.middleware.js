@@ -1,17 +1,18 @@
-const db = require('../db');
+const User = require('../models/user.model');
 
-module.exports.validateLogin = async (req, res)=>{
-    let username = req.body.username;
-    let password = req.body.password;
-    let query = "SELECT * FROM user WHERE username ='"+username+"'AND password ='"+password+"'";
-    db.query(query, async (err, result)=>{
-        if(err) throw err;
-        if(!result){
-            res.redirect('/');
-            next();
+module.exports.requireAuth = async (req, res, next)=>{
+    if(!req.cookies.userId){
+        res.redirect('/auth/login');
+        return;
+    }
+    try{
+        const user = await User.findByPk(req.cookies.userId);
+        if(user === null){
+            res.redirect('/auth/login');
+            return;
         }
-        else{
-            res.redirect('/login');
-        }
-    });
+    }catch(e){
+        console.log(e);
+    }
+    next();
 }

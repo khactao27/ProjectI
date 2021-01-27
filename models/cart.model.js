@@ -6,13 +6,14 @@ const Cart = sequelize.define('giohang', {
     maGH: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     tongTien: {
         type: DataTypes.DECIMAL(18, 0),
         allowNull: false
     },
-    user_id: {
+    userid: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {

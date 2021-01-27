@@ -1,22 +1,22 @@
-const db = require('../db');
+const users = require('../models/user.model');
 
 module.exports.get = function(req, res){
     let userid = parseInt(req.params);
-    db.query("SELECT * FROM user WHERE id ="+userid+"",async(err, results)=>{
-        if(err) throw err;
-        let user = {
-            username: results.username,
-            fullname: results.fullname,
-            gender: results.gender,
-            dob: results.dob,
-            phone: results.phone,
-            avatar: results.avatar
-        }
-        res.render('../views/user/user.pug',{user: user});
-    })
+    const user = await users.findByPk(userid);
+    if(!user){
+        console.log('No user!');
+    }
+    res.render('../views/user/user.pug');
 }
 module.exports.update = function(req, res){
     let userid = parseInt(req.params);
-    let user = req.body;
-    db.query("UPDATE user SET fullname = , gender =, phone =, avatar=, dob= WHERE user.id = userid");
+    let password = req.body.password;
+
+    await users.update({password: password},
+        {
+            where: {
+                id: userid
+            }
+        });
+    res.redirect('/user');
 }

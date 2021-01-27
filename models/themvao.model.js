@@ -1,7 +1,7 @@
 const sequelize = require('./db');
 const {DataTypes} = require('sequelize');
-const { databaseVersion } = require('./db');
 const Cart = require('./cart.model');
+const sanpham = require('./sanpham.model');
 
 const themvao = sequelize.define('themvao', {
     maSP:{
@@ -9,7 +9,7 @@ const themvao = sequelize.define('themvao', {
         allowNull: false,
         primaryKey: true,
         references: {
-            model: products,
+            model: sanpham,
             key: 'maSP'
         }
     },
@@ -30,5 +30,4 @@ const themvao = sequelize.define('themvao', {
     tableName: 'themvao',
     timestamps: false
 });
-
 module.exports = themvao;

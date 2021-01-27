@@ -1,4 +1,5 @@
-var mysql = require('mysql')
+var mysql = require('mysql');
+const { Db } = require('typeorm');
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',

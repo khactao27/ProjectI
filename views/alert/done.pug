@@ -1,0 +1,61 @@
+doctype html
+head
+  title Th&ocirc;ng tin &dstrok;&#x1EB7;t h&agrave;ng
+  meta(charset='utf-8')
+  link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css', integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2', crossorigin='anonymous')
+div(style="padding: 0 400px;")
+  h1(style='text-align:center;color: red;') &Dstrok;&#x1EB7;t h&agrave;ng th&agrave;nh c&ocirc;ng!
+  div
+    h4(style='text-align:center;') Th&ocirc;ng tin kh&aacute;ch h&agrave;ng
+    table.table
+      tbody
+        tr
+          th H&#x1ECD; t&ecirc;n ng&#x1B0;&#x1EDD;i nh&#x1EAD;n:
+          td=info.fullname
+        tr
+          th S&#x1ED1; &dstrok;i&#x1EC7;n tho&#x1EA1;i:
+          td=info.phone
+        tr
+          th Email:
+          td=info.email
+        tr
+          th &Dstrok;&#x1ECB;a ch&#x1EC9; nh&#x1EAD;n h&agrave;ng:
+          td=info.address
+        tr
+          th Ghi ch&uacute;:
+          td=info.note
+  div
+    h4(style='text-align:center;') Th&ocirc;ng tin &dstrok;&#x1A1;n h&agrave;ng
+    div
+      table.table
+        thead
+          tr
+            th(scope='col') H&igrave;nh &#x1EA3;nh
+            th(scope='col') T&ecirc;n s&#x1EA3;n ph&#x1EA9;m
+            th(scope='col') S&#x1ED1; l&#x1B0;&#x1EE3;ng
+            th(scope='col') T&#x1ED5;ng gi&aacute;
+        tbody
+         each val in products
+            tr
+                th(scope='row')
+                  img(src=val.hinhanhSP,style='width:40px;height:50px', alt=val.tenSP)
+                td=val.tenSP
+                td=val.soluong
+                td=val.tonggia + " VNĐ"
+    div(style='background-color:rgb(243, 247, 250);')
+      table.table
+        tbody
+          tr
+            th T&#x1EA1;m t&iacute;nh
+            td=total +" VNĐ"
+          tr
+            th Ph&iacute; giao h&agrave;ng
+            td Mi&#x1EC5;n ph&iacute;
+          tr
+            th Gi&#x1EA3;m gi&aacute;
+            td 0 VN&Dstrok;
+          tr
+            th T&#x1ED5;ng c&#x1ED9;ng
+            td=total+ ' VNĐ'
+h5(style='text-align:center;color: rgb(248, 225, 16);') &Dstrok;ang ch&#x1EDD; x&aacute;c nh&#x1EAD;n
+button.btn.btn-primary(onclick="document.location='/'", style='text-align:center;') V&#x1EC1; trang ch&#x1EE7;
